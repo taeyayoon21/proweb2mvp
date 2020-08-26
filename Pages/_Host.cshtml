@@ -1,0 +1,105 @@
+﻿@page "/"
+@namespace ProWeb2MVP.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ProWeb2MVP</title>
+    <base href="~/" />
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+    @*<link href="css/Default.css" rel="stylesheet" />*@
+    <link href="css/site.css" rel="stylesheet" />
+    <link href="css/datatables/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="css/datatables/responsive.dataTables.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="css/modern-business.css" rel="stylesheet">
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">ProWeb 2.0</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/VPCS">VPCS</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown Menu Templete
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+                            <a class="dropdown-item" href="#">Dropdown 1</a>
+                            <a class="dropdown-item" href="#">Dropdown 2</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <app>
+        <component type="typeof(App)" render-mode="ServerPrerendered" />
+    </app>
+
+
+    <script src="_framework/blazor.server.js"></script>
+    <script src="js/jquery/jquery-3.3.1.min.js"></script>
+    <script src="js/datatables/jquery.dataTables.min.js"></script>
+    <script src="js/datatables/dataTables.responsive.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function resizePage(container, table) {
+            const height = $(container).height() - 117; //117px : filter + scrollHead + paginate 높이 더한 값            
+            updateDataTable(table, height + "px");
+        };
+
+        var resizeTimer;
+
+        function updateDataTable(table, scrollHeight) {
+            $(table).DataTable({
+                //"dom": 'ifrtlp',
+                "destroy":true,
+                "pageLength": 50,
+                //"responsive": true, // 반응형, 폭이 좁아지면 + 기호가 표시되고, 클릭하면 하단에 나머지 컬럼이 보인다.
+                "autoWidth": true, // 컬럼 자동 폭 조정
+                "scrollY": scrollHeight,
+                "scrollCollapse": true,
+                "scrollX": true,
+                columnDefs: [{ width: "16%", targets: 0 }]
+            });
+        }
+
+        function TestDataTablesAdd(container, table) {
+
+            $(document).ready(function () {
+                resizePage(container, table);
+            });
+
+            $(window).resize(function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(resizePage(container, table), 100);
+            });
+        }
+
+        function TestDataTablesRemove(table) {
+            $(document).ready(function () {
+                $(table).DataTable().destroy();
+                // Removes the datatable wrapper from the dom.
+                var elem = document.querySelector(table + '_wrapper');
+                elem.parentNode.removeChild(elem);
+            });
+        }
+    </script>
+</body>
+</html>

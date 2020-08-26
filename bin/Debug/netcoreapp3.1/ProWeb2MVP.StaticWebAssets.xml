@@ -1,0 +1,5 @@
+﻿<StaticWebAssets Version="1.0">
+  <ContentRoot BasePath="/Identity" Path="C:\Users\CV9416\.nuget\packages\microsoft.aspnetcore.identity.ui\3.1.5\staticwebassets\V4\" />
+  <ContentRoot BasePath="_content/GridBlazor" Path="C:\Users\CV9416\.nuget\packages\gridblazor\1.7.1\build\..\staticwebassets\" />
+  <ContentRoot BasePath="_content/MatBlazor" Path="C:\Users\CV9416\.nuget\packages\matblazor\2.6.2\build\..\staticwebassets\" />
+</StaticWebAssets>

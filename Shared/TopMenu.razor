@@ -1,0 +1,78 @@
+﻿<!-- wrap -->
+<div id="wrap">
+    <!-- header -->
+    <div id="header">
+        <!-- Gnb 시작 -->
+        <table width="100%" cellpadding="0" cellspacing="0" border="0">
+            <tbody>
+                <tr>
+                    <td rowspan="2" align="center" valign="middle" id="logo"><a href="#"><img src="/images/topmenu/logo_proweb.gif" alt="Project Web"></a></td>
+                    <td align="right" valign="middle">
+                        <div style="height:39px;">
+                            <table align="right" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td class="selectPjt" style="padding:7px 10px 10px 0px; vertical-align:middle">
+                                        <select ID="cbProject">
+                                            <option value="t12345">T12345 - TEST Project 1 SKEC USA1</option>
+                                        </select>
+                                    </td>
+
+                                    <td style="padding:7px 10px 10px 0px; vertical-align:middle">
+                                        <button id="btn_UserLink"
+                                                style="height: 16px; cursor: pointer; width: 100%; display: block; vertical-align: middle;
+                                                    margin: 0; padding: 2px 2px 2px 2px; background: 0; outline: 0 none; overflow: hidden; vertical-align: bottom; -webkit-appearance: none;
+                                                    box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;
+                                                    border-style: solid; border-color:#bbb; border-width: 1px; "
+                                                hidefocus="true" type="button" autocomplete="off">
+                                            <span style="height: 16px; line-height: normal; padding-top: 1px; font-size: 11px;"><span class="userId">Park Jun Young</span> [CV9416]</span>
+                                        </button>
+                                    </td>
+
+                                    <td class="logout" style="padding:3px 10px 3px 0px">
+                                        <!-- Logout Btn -->
+                                        <asp:LinkButton runat="server" ID="lnkLogOut" OnClick="lnkLogOut_Click"><img src="/Images/topmenu/btn_logout.gif" alt="Logout" class="btn_logout" /></asp:LinkButton>
+                                        <!-- //Logout Btn -->
+                                    </td>
+                                    <td style="padding:7px 10px 10px 0px; vertical-align:middle">
+                                        <img src="/Images/Default/icon/ico_new.gif" id="imgNotification" runat="server" style="display:none; cursor:pointer;" />
+                                    </td>
+                                    <td style="padding:7px 10px 10px 0px; vertical-align:middle">
+                                        <!-- Etc Btn -->
+                                        <div class="etc">
+                                            <div style="float:right; overflow:hidden; margin-top:4px">
+                                                <img src="/Images/topmenu/menu_more.gif" id="imgMenu" runat="server" style="display:none; cursor:pointer;" />
+                                            </div>
+                                        </div><!-- //Etc Btn -->
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align:bottom; ">
+                        <div class="tab_menu_blue" id="tab_menu">
+                            <ul>
+                                <li class="on" id="menu04">
+                                    <strong><a href="javascript:void(0)" onclick="window.location.href = '/VPCS';return false;"> <span>VPCS</span> </a></strong>
+                                </li>
+
+                                <li class="bar">&nbsp;</li>
+
+                                <li id="menu07">
+                                    <strong><a href="javascript:void(0)" onclick="window.location.href = '/';return false;"> <span>AWP</span> </a></strong>
+                                </li>
+                            </ul>
+                            <asp:Literal runat="server" ID="lnkHelp" Visible="true">
+                                <div class="btnAdmin"><a href="javascript:void(0)" onclick="window.location.href = '/Main/Board/BoardMain.aspx';return false;" style="vertical-align:middle"><span style="vertical-align:middle; color:White">Help</span></a></div>
+                            </asp:Literal>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- //header -->
+</div>
+<!-- //wrap -->

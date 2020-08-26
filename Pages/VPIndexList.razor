@@ -1,0 +1,84 @@
+﻿@page "/VPCS"
+@layout VPCSMainLayout;
+
+@inject ProWeb2MVP.Data.DataAccess.OracleDBContext context;
+@inject IJSRuntime JSRuntime
+@implements IDisposable
+
+@using System.Data;
+
+<style>
+    .datatable-container {
+        height: calc( 94vh - 113.6px );
+    }
+</style>
+
+<h1>VP Index List</h1>
+
+<p>VP Index List MVP Page</p>
+
+@if (dt == null)
+{
+<p><em>Loading...</em></p>
+}
+else
+{
+<div id="TableContainer" class="datatable-container">
+    <table id="example" class="display nowrap compact order-column cell-border" cellspacing="0" style="width:80%;">
+        <thead>
+            <tr>
+                @foreach (DataColumn col in dt.Columns)
+                {
+                    <th>@col.ColumnName</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (DataRow row in dt.Rows)
+            {
+                <tr>
+                    @foreach (DataColumn col in dt.Columns)
+                    {
+                        <td>@row[col.ColumnName]</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+}
+   
+
+
+
+@code {    
+    private System.Data.DataTable dt;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ////containerSize 를 수정
+        //containerSize = "81vh";
+
+        var entity = new ProWeb2MVP.Models.POMainEntity();
+
+        entity.P_PJT_ID = "t00123";
+        entity.P_NEW_VER_YN = "Y";
+        entity.P_SORT_COL = "ITEM_NO";
+        entity.P_SORT_DIRECTION = "ASC";
+        entity.P_START_IDX = "0";
+        entity.P_PAGE_SIZE = "100";
+        entity.P_LIKE_SEARCH_YN = "N";
+
+        dt = await context.GetAsyncVPList(entity);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await JSRuntime.InvokeAsync<object>("TestDataTablesAdd", "#TableContainer", "#example");
+    }
+
+    void IDisposable.Dispose()
+    {
+        JSRuntime.InvokeAsync<object>("TestDataTablesRemove", "#example");
+    }
+}
